@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    z-index: 1000;
+    background-color: red;
+    color: white;
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow for depth */
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+
+#notification-container.hidden {
+    transform: translateY(-100%);
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#user-form {
+    width: 100%; /* Adjusted to occupy full width of its container */
+    max-width: 400px; /* Set a maximum width */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Reduced padding for better spacing */
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+#user-form label {
+    display: block;
+    margin-bottom: 10px; /* Increased margin for better separation */
+}
+
+#user-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px; /* Adjusted margin for better spacing */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+#user-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#user-form button:hover {
+    background-color: #0056b3;
+}
+
+.chat-container {
+    width: 80%; /* Adjust the width as needed */
+    max-width: 400px; /* Set a maximum width */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    height: 90%;
+}
+
+.chat-messages {
+    flex-grow: 1; /* Allow the chat messages to grow and occupy remaining space */
+    padding: 10px;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px); /* Set maximum height for scrolling */
+    margin-bottom: 20px;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Roundness of the scrollbar thumb */
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
+}
+
+.message {
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+}
+
+.message.system {
+    background-color: #cce6ff; /* Light gray */
+    text-align: center;
+    padding: 5px 10px;
+}
+
+/* Container for sender's messages */
+.message.sender-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+}
+
+/* Container for receiver's messages */
+.message.receiver-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+}
+
+/* Styles for messages sent by the current user */
+.message.sender {
+    background-color: #dcf8c6;
+    max-width: 80%;
+    margin-bottom: 5px;
+}
+
+/* Styles for received messages */
+.message.receiver {
+    background-color: #e2e2e2;
+    max-width: 80%;
+    margin-bottom: 5px;
+}
+
+/* Styles for message text */
+.message p {
+    margin: 0;
+    padding: 8px 5px;
+    border-radius: 8px;
+}
+
+.chat-input-container {
+    display: flex;
+    position: absolute;
+    bottom: 35px;
+    width: 385px;
+    align-items: center;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.chat-input-container::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+.chat-input-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+.chat-input-container::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Roundness of the scrollbar thumb */
+    height: 50px; /* Adjust height of the scrollbar thumb */
+}
+
+.chat-input-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
+}
+
+.chat-input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.send-button-container {
+    margin-left: 10px;
+}
+
+#send-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px; /* Adjust button padding */
+}
+
+#send-button img {
+    width: 20px; /* Adjust icon size */
+    height: 20px;
+}
+
+.custom-textarea {
+    resize: none; /* Disable textarea resizing */
+    overflow: hidden; /* Hide overflow text */
+    height: auto; /* Allow the height to adjust based on content */
+    min-height: 30px; /* Set minimum height */
+    max-height: 35px; /* Set maximum height */
+    padding: 6px 10px; /* Adjust padding as needed */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Add border radius */
+    font-family: Arial, sans-serif; /* Specify font family */
+    font-size: 14px; /* Specify font size */
+    box-sizing: border-box; /* Include padding and border in total height */
+}
+
+.custom-textarea:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #007bff; /* Change border color on focus */
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 500px) {
+    .chat-input-container {
+        width: 80%;
+    }
+
+    .chat-input {
+        flex: 1;
+        max-width: 90%;
+        width: auto;
+    }
+
+    .send-button-container {
+        margin-left: auto; /* Move send button to the right */
+    }
+
+    #send-button {
+        padding: 3px;
+    }
+}

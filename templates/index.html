@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Private Chat - by DOST</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='styles.css') }}"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="{{ url_for('static', filename='assets/favicon.png') }}"
+        />
+        <link
+            rel="manifest"
+            href="{{ url_for('static', filename='assets/manifest.json') }}"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    </head>
+    <body>
+        <div id="main-container">
+            <!-- Notification container -->
+            <div id="notification-container" class="notification hidden">
+                <span id="notification-message"></span>
+            </div>
+
+            <div id="wrapper">
+                <div id="user-form">
+                    <form id="login-form">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" required />
+                        <label for="room-code">Room Code:</label>
+                        <input type="text" id="room-code" required />
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+
+                <div
+                    class="chat-container"
+                    id="chat-container"
+                    style="display: none"
+                >
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Messages will be displayed here -->
+                    </div>
+                    <div class="chat-input-container">
+                        <!-- <input
+                            type="text"
+                            class="chat-input"
+                            id="message-input"
+                            placeholder="Type a message..."
+                        /> -->
+
+                        <textarea
+                            class="chat-input custom-textarea"
+                            id="message-input"
+                            placeholder="Type a message..."
+                        ></textarea>
+                        <div class="send-button-container">
+                            <button id="send-button">
+                                <!-- PNG icon from assets folder -->
+                                <img
+                                    src="{{ url_for('static', filename='assets/send.png') }}"
+                                    alt="Send"
+                                />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+</html>
