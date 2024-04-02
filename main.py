@@ -1,13 +1,12 @@
 import asyncio
 import websockets
-import threading
 from colorama import Fore, Style
 import json
 import os
 
 import rsa
 
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
