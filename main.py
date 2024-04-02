@@ -1,6 +1,5 @@
 import asyncio
 import websockets
-from colorama import Fore, Style
 import json
 import os
 
@@ -48,14 +47,6 @@ def decrypt(encrypted_message, private_key):
     return decrypted_message.decode()
 
 
-colors = {
-    "green": Fore.GREEN,
-    "red": Fore.RED,
-    "blue": Fore.BLUE,
-    "reset": Style.RESET_ALL
-}
-
-
 class ChatClient:
     def __init__(self, host, port, username, room):
         self.host = host
@@ -91,9 +82,6 @@ class ChatClient:
                 message = json.loads(message_raw)
 
                 if message["type"] == "SYSTEM_MESSAGE":
-                    print(
-                        f"{colors[message['color']]}{message['message']}{colors['reset']}"  # noqa
-                    )
                     emit('message_received', message)
                     if message["code"] == 409:
                         continue
@@ -112,9 +100,6 @@ class ChatClient:
                 if message["type"] == "USER_MESSAGE" and message["message"]:
                     toSend = bytes.fromhex(message["message"])
                     toSend = decrypt(toSend, server_private_key)
-                    print(
-                        f"{colors[message['color']]}{message['username']}: {toSend}{colors['reset']}"   # noqa
-                    )
                     message["message"] = toSend
                     emit('message_received', message)
 
@@ -122,9 +107,6 @@ class ChatClient:
                     media_encoded = message["message"]
                     filename = message.get("filename", "unknown")
 
-                    print(
-                        f"Receiving {filename} from {message['username']}..."
-                    )
                     emit('message_received', message)
 
                     if not os.path.exists("received_media"):
@@ -135,7 +117,6 @@ class ChatClient:
                     with open(media_path, "wb") as f:
                         f.write(media_bytes)
 
-                    print(f"{colors['green']}Media saved to {media_path}{colors['reset']}")     # noqa
                     emit('message_received', message)
 
             except websockets.exceptions.ConnectionClosedError:
